@@ -8,10 +8,10 @@ public class NewUserAdd extends TestBase {
   @Test
   public void testNewUserAdd() throws Exception {
 
-    app.gotoCreateUser();
+    app.getNavigationHelper().gotoCreateUser();
     app.fillUserForm(new UserData("Test1", "Test2", "Testt", "Tesst", "some@mail.com"));
-    app.submitNewUser();
-    app.gotoHomePage();
+    app.getNavigationHelper().submitNewUser();
+    app.getNavigationHelper().gotoHomePage();
   }
 
 }

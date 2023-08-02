@@ -10,7 +10,8 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
   FirefoxDriver wd;
-
+  private SeesionHelper seesionHelper;
+  private NavigationHelper navigationHelper ;
   private GroupHelper groupHelper;
   private  UserHelper userHelper ;
 
@@ -19,23 +20,12 @@ public class ApplicationManager {
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/group.php");
     groupHelper = new GroupHelper(wd);
-    login("admin", "secret");
+    navigationHelper = new NavigationHelper(wd);
+    seesionHelper = new SeesionHelper(wd);
+    seesionHelper.login("admin", "secret");
   }
 
-  private void login(String name, String password) {
-   wd.findElement(By.name("user")).click();
-    wd.findElement(By.name("user")).click();
-    wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys(name);
-    wd.findElement(By.name("pass")).click();
-    wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys(password);
-    wd.findElement(By.xpath("//input[@value='Login']")).click();
-  }
 
-  public void gotoGroupPage() {
-    wd.findElement(By.linkText("groups")).click();
-  }
 
   public void stop() {
     wd.quit();
@@ -60,16 +50,8 @@ public class ApplicationManager {
   }
 
 
-  public void gotoHomePage() {
-    wd.findElement(By.linkText("home page")).click();
-  }
-
-  public void submitNewUser() {
-    wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
-  }
-
   public void fillUserForm(UserData userData) {
-    wd.findElement(By.name("firstname")).click();
+   wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
     wd.findElement(By.name("firstname")).sendKeys(userData.getName());
     wd.findElement(By.name("middlename")).click();
@@ -86,11 +68,11 @@ public class ApplicationManager {
     wd.findElement(By.name("email")).sendKeys(userData.getMail());
   }
 
-  public void gotoCreateUser() {
-    wd.findElement(By.linkText("add new")).click();
-  }
-
   public GroupHelper getGroupHelper() {
     return groupHelper;
+  }
+
+  public NavigationHelper getNavigationHelper() {
+    return navigationHelper;
   }
 }
