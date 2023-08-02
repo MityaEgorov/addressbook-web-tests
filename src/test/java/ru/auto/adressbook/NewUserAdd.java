@@ -7,11 +7,11 @@ public class NewUserAdd extends TestBase {
   @Test
   public void testNewUserAdd() throws Exception {
 
-    gotoCreateUser();
-    fillUserForm(new UserData("Test1", "Test2", "Testt", "Tesst", "some@mail.com"));
-    submitNewUser();
-    gotoHomePage();
-    clickLogOut();
+    app.gotoCreateUser();
+    app.fillUserForm(new UserData("Test1", "Test2", "Testt", "Tesst", "some@mail.com"));
+    app.submitNewUser();
+    app.gotoHomePage();
+    app.clickLogOut();
   }
 
 }
