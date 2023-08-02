@@ -1,5 +1,6 @@
-package ru.auto.adressbook;
+package ru.auto.adressbook.tests;
 
+import ru.auto.adressbook.appmanager.ApplicationManager;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 

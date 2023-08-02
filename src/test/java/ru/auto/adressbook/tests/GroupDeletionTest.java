@@ -1,4 +1,4 @@
-package ru.auto.adressbook;
+package ru.auto.adressbook.tests;
 
 import org.testng.annotations.Test;
 
@@ -7,9 +7,9 @@ public class GroupDeletionTest extends TestBase {
   @Test
   public void testGroupDeletion() throws Exception {
     app.gotoGroupPage();
-    app.selectGroup();
-    app.deleteSelectedGroups();
-    app.returntoGroupPage();
+    app.getGroupHelper().selectGroup();
+    app.getGroupHelper().deleteSelectedGroups();
+    app.getGroupHelper().returntoGroupPage();
   }
 
 }
