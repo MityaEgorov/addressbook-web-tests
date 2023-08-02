@@ -3,21 +3,14 @@ package ru.auto.adressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class SeesionHelper {
-  private final FirefoxDriver wd;
-
+public class SeesionHelper extends HelperBase{
   public SeesionHelper(FirefoxDriver wd) {
-    this.wd = wd;
+    super(wd);
   }
 
   public void login(String name, String password) {
-    wd.findElement(By.name("user")).click();
-    wd.findElement(By.name("user")).click();
-    wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys(name);
-    wd.findElement(By.name("pass")).click();
-    wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys(password);
-    wd.findElement(By.xpath("//input[@value='Login']")).click();
+    type(By.name("user") , name);
+    type(By.name("pass"), password);
+    click(By.xpath("//input[@value='Login']"));
   }
 }
