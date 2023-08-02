@@ -1,4 +1,4 @@
-package ru.auto.adressbook.modal;
+package ru.auto.adressbook;
 
 public class GroupData {
   private final String name;
