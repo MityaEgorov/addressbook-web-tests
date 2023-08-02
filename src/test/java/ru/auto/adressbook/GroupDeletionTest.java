@@ -1,4 +1,4 @@
-package com.example.tests;
+package ru.auto.adressbook;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
