@@ -3,7 +3,7 @@ package ru.auto.adressbook.tests;
 import org.testng.annotations.Test;
 import ru.auto.adressbook.modal.UserData;
 
-public class NewUserAddTest extends TestBase {
+public class NewUserAdd extends TestBase {
 
   @Test
   public void testNewUserAdd() throws Exception {
