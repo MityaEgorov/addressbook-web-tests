@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -14,22 +14,20 @@ import java.util.concurrent.TimeUnit;
 public class GroupCreationTest {
   private WebDriver wd;
 
-
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
-    System.setProperty("webdriver.chrome.wd", "/Users/d.egorov/Documents/chromedriver.exe");
-    wd = new ChromeDriver();
-
+    wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    wd.get("http://localhost/addressbook/edit.php");
-    login("admin", "secret");
 
+    wd.get("http://localhost/addressbook/group.php");
+    login("admin", "secret");
   }
 
-  private void login(String username, String password) {
+  private void login(String name, String password) {
+    wd.findElement(By.name("user")).click();
     wd.findElement(By.name("user")).click();
     wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys(username);
+    wd.findElement(By.name("user")).sendKeys(name);
     wd.findElement(By.name("pass")).click();
     wd.findElement(By.name("pass")).clear();
     wd.findElement(By.name("pass")).sendKeys(password);
@@ -41,14 +39,9 @@ public class GroupCreationTest {
 
     gotoGroupPage();
     initGroupCreation();
-    fillGroupForm(new GroupData("test2", "test3", "test4"));
+    fillGroupForm(new GroupData("Test", "Test2", "Test3"));
     submitGroupCreation();
     returntoGroupPage();
-    wd.findElement(By.linkText("Logout")).click();
-    wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys("admin");
-    wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys("secret");
   }
 
   private void returntoGroupPage() {
@@ -60,6 +53,7 @@ public class GroupCreationTest {
   }
 
   private void fillGroupForm(GroupData groupData) {
+    wd.findElement(By.name("group_name")).click();
     wd.findElement(By.name("group_name")).clear();
     wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
     wd.findElement(By.name("group_header")).click();
@@ -71,14 +65,14 @@ public class GroupCreationTest {
   }
 
   private void initGroupCreation() {
-    wd.findElement(By.name("group_name")).click();
-  }
-
-  private void gotoGroupPage() {
     wd.findElement(By.name("new")).click();
   }
 
-  @AfterMethod(alwaysRun = true)
+  private void gotoGroupPage() {
+    wd.findElement(By.linkText("groups")).click();
+  }
+
+  @AfterClass(alwaysRun = true)
   public void tearDown() throws Exception {
     wd.quit();
   }
