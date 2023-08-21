@@ -17,4 +17,15 @@ public class UserHelper extends HelperBase {
     usrtype(By.name("email"), userData.getMail());
   }
 
+  public void buttonEditUser() {
+    click(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void clickUpdateUser() {
+    click(By.xpath("//div[@id='content']/form/input[22]"));
+  }
+
+  public void gotoHomePage() {
+    click(By.xpath("//a[contains(text(),'home')]"));
+  }
 }
