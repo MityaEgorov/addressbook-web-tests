@@ -28,4 +28,8 @@ public class UserHelper extends HelperBase {
   public void gotoHomePage() {
     click(By.xpath("//a[contains(text(),'home')]"));
   }
+
+  public void buttonDeleteUser() {
+    click(By.xpath("//div[@id='content']/form[2]/input[2]"));
+  }
 }
