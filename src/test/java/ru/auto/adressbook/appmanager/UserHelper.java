@@ -10,16 +10,11 @@ public class UserHelper extends HelperBase {
   }
 
   public void fillUserForm(UserData userData) {
-    type(By.name("firstname"), userData.getName());
-    type(By.name("middlename"), userData.getMname());
-    type(By.name("lastname"), userData.getLname());
-    type(By.name("company"), userData.getComname());
-    type(By.name("email"), userData.getMail());
+    usrtype(By.name("firstname"), userData.getName());
+    usrtype(By.name("middlename"), userData.getMname());
+    usrtype(By.name("lastname"), userData.getLname());
+    usrtype(By.name("company"), userData.getComname());
+    usrtype(By.name("email"), userData.getMail());
   }
 
-  public void type(By locator, String data) {
-    wd.findElement(locator).click();
-    wd.findElement(locator).clear();
-    wd.findElement(locator).sendKeys(data);
-  }
 }
