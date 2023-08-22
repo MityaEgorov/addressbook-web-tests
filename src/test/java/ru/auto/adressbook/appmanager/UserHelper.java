@@ -2,6 +2,7 @@ package ru.auto.adressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 import ru.auto.adressbook.modal.UserData;
 
 public class UserHelper extends HelperBase {
@@ -15,6 +16,11 @@ public class UserHelper extends HelperBase {
     usrtype(By.name("lastname"), userData.getLname());
     usrtype(By.name("company"), userData.getComname());
     usrtype(By.name("email"), userData.getMail());
+
+    if (isElementPresent(By.name("new_group"))) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroup());
+    }
+
   }
 
   public void buttonEditUser() {
