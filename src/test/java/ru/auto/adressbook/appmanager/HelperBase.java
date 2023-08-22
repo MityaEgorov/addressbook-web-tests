@@ -3,12 +3,12 @@ package ru.auto.adressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebDriver;
 
 public class HelperBase {
-  protected FirefoxDriver wd;
+   WebDriver wd;
 
-  public HelperBase(FirefoxDriver wd) {
+  public HelperBase(WebDriver wd) {
     this.wd=wd;
   }
 

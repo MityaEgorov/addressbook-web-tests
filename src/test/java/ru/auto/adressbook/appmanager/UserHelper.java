@@ -1,11 +1,11 @@
 package ru.auto.adressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebDriver;
 import ru.auto.adressbook.modal.UserData;
 
 public class UserHelper extends HelperBase {
-  public UserHelper(FirefoxDriver wd) {
+  public UserHelper(WebDriver wd) {
     super(wd);
   }
 

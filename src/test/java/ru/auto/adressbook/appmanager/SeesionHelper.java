@@ -1,10 +1,10 @@
 package ru.auto.adressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebDriver;
 
 public class SeesionHelper extends HelperBase{
-  public SeesionHelper(FirefoxDriver wd) {
+  public SeesionHelper(WebDriver wd) {
     super(wd);
   }
 
