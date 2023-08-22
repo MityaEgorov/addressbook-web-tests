@@ -9,7 +9,8 @@ public class NewUserAddTest extends TestBase {
   public void testNewUserAdd() throws Exception {
 
     app.getNavigationHelper().gotoCreateUser();
-    app.getUserHelper().fillUserForm(new UserData("Test1", "Test2", "Testt", "Tesst", "some@mail.com", "test1"));
+    //noinspection TestFailedLine
+    app.getUserHelper().fillUserForm(new UserData("Test1", "Test2", "Testt", "Tesst", "some@mail.com", "Test"), true);
     app.getNavigationHelper().submitNewUser();
     app.getNavigationHelper().gotoHomePage();
   }

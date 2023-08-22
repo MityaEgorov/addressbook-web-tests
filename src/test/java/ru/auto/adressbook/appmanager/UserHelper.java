@@ -3,6 +3,7 @@ package ru.auto.adressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.auto.adressbook.modal.UserData;
 
 public class UserHelper extends HelperBase {
@@ -10,15 +11,16 @@ public class UserHelper extends HelperBase {
     super(wd);
   }
 
-  public void fillUserForm(UserData userData) {
+  public void fillUserForm(UserData userData, boolean creation ) {
     usrtype(By.name("firstname"), userData.getName());
     usrtype(By.name("middlename"), userData.getMname());
     usrtype(By.name("lastname"), userData.getLname());
     usrtype(By.name("company"), userData.getComname());
     usrtype(By.name("email"), userData.getMail());
 
-    if (isElementPresent(By.name("new_group"))) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroup());
+    if (creation) new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroup());
+    else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
 
   }
