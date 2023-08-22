@@ -40,4 +40,22 @@ public class UserHelper extends HelperBase {
   public void buttonDeleteUser() {
     click(By.xpath("//div[@id='content']/form[2]/input[2]"));
   }
+
+  public void submitNewUser() {
+    wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+  }
+
+  public void gotoCreateUser() {
+    wd.findElement(By.linkText("add new")).click();
+  }
+
+
+  public void createUser(UserData user, boolean b) {
+
+
+
+
+  }
+
+
 }
