@@ -2,39 +2,33 @@ package ru.auto.adressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import ru.auto.adressbook.modal.UserData;
 
-public class UserHelper extends HelperBase {
+public class UserHelper extends NavigationHelper {
   public UserHelper(WebDriver wd) {
     super(wd);
   }
 
-  public void fillUserForm(UserData userData, boolean creation ) {
+  public void fillUserForm(UserData userData) {
     usrtype(By.name("firstname"), userData.getName());
     usrtype(By.name("middlename"), userData.getMname());
     usrtype(By.name("lastname"), userData.getLname());
     usrtype(By.name("company"), userData.getComname());
     usrtype(By.name("email"), userData.getMail());
 
-    if (creation) new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroup());
-    else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
-    }
+    // if (creation) new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroup());
+    // else {
+    //  Assert.assertFalse(isElementPresent(By.name("new_group")));
+    // }
 
   }
 
   public void buttonEditUser() {
-    click(By.xpath("//img[@alt='Edit']"));
+    click(By.cssSelector("img[alt='Edit']"));
   }
 
   public void clickUpdateUser() {
-    click(By.xpath("//div[@id='content']/form/input[22]"));
-  }
-
-  public void gotoHomePage() {
-    click(By.xpath("//a[contains(text(),'home')]"));
+    click(By.xpath("//input[@name='update']"));
   }
 
   public void buttonDeleteUser() {
@@ -50,12 +44,13 @@ public class UserHelper extends HelperBase {
   }
 
 
-  public void createUser(UserData user, boolean b) {
-
-
-
-
+  public void createNewUser(UserData user) {
+    gotoCreateUser();
+    fillUserForm(user);
+    submitNewUser();
   }
 
-
+  public boolean noneUser() {
+    return !isElementPresent(By.id("search_count")) || wd.findElement(By.id("search_count")).getText().equals("0");
+  }
 }
