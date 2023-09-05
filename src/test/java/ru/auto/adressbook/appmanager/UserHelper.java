@@ -51,6 +51,11 @@ public class UserHelper extends NavigationHelper {
   }
 
   public boolean noneUser() {
-    return !isElementPresent(By.id("search_count")) || wd.findElement(By.id("search_count")).getText().equals("0");
+    return !isElementPresent(By.name("selected[]"));
+            //|| wd.findElement(By.id("search_count")).getText().equals("0");
+  }
+
+  public int getUserCount() {
+    return wd.findElements(By.name("selected[]")).size();
   }
 }
