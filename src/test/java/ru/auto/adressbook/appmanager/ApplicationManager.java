@@ -42,9 +42,6 @@ public class ApplicationManager  {
     seesionHelper = new SeesionHelper(wd);
     seesionHelper.login("admin", "secret");
   }
-
-
-
   public void stop() {
     wd.quit();
   }
