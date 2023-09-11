@@ -2,7 +2,11 @@ package ru.auto.adressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.auto.adressbook.modal.UserData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserHelper extends NavigationHelper {
   public UserHelper(WebDriver wd) {
@@ -57,5 +61,16 @@ public class UserHelper extends NavigationHelper {
 
   public int getUserCount() {
     return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<UserData> getUserList() {
+    List<UserData> users = new ArrayList<UserData>();
+    List<WebElement> elements = wd.findElements(By.xpath("//*[@id=\"75\"]"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      UserData user = new UserData(null, null, null, null, null, null) ;
+      users.add(user);
+    }
+    return users;
   }
 }
