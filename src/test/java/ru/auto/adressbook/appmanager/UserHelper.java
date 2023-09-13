@@ -65,10 +65,10 @@ public class UserHelper extends NavigationHelper {
 
   public List<UserData> getUserList() {
     List<UserData> users = new ArrayList<UserData>();
-    List<WebElement> elements = wd.findElements(By.xpath("//*[@id=\"75\"]"));
+    List<WebElement> elements = wd.findElements(By.name("selected[]"));
     for (WebElement element : elements) {
       String name = element.getText();
-      UserData user = new UserData(null, null, null, null, null, null) ;
+      UserData user = new UserData("Test1", "Test2", "Testt", "Tesst", "some@mail.com", "Test") ;
       users.add(user);
     }
     return users;
