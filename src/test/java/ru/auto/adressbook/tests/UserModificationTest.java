@@ -15,6 +15,7 @@ public class UserModificationTest extends TestBase {
     app.getUserHelper().buttonEditUser();
     app.getUserHelper().fillUserForm(new UserData("Test4", "Test5", "Testtt", "Tesstt", "somee@mail.com",null));
     app.getUserHelper().clickUpdateUser();
+    app.getNavigationHelper().gotoHomePage();
     int after = app.getUserHelper().getUserCount();
     Assert.assertEquals(after, before );
   }
