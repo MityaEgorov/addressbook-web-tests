@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.auto.adressbook.modal.UserData;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class UserDeletionTest extends TestBase {
@@ -20,7 +21,11 @@ public class UserDeletionTest extends TestBase {
     Assert.assertEquals(after.size(), before.size() - 1);
 
     before.remove(before.size() -1);
-    Assert.assertEquals(before, after);
+
+    Comparator<? super UserData> byId = (u1, u2) -> Integer.compare(u1.getId(), u2.getId());
+    before.sort(byId);
+    after.sort(byId);
+    Assert.assertEquals(before,after);
   }
 
 }

@@ -26,8 +26,26 @@ public class UserData {
   }
 
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    UserData userData = (UserData) o;
+
+    if (!Objects.equals(name, userData.name)) return false;
+    return Objects.equals(lname, userData.lname);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = name != null ? name.hashCode() : 0;
+    result = 31 * result + (lname != null ? lname.hashCode() : 0);
+    return result;
+  }
+
   public UserData(String name, String mname, String lname, String comname, String mail, String group) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.name = name;
     this.mname = mname;
     this.lname = lname;
@@ -68,27 +86,6 @@ public class UserData {
   public void setId(int id) {
     this.id = id;
   }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    UserData userData = (UserData) o;
-
-    if (id != userData.id) return false;
-    if (!Objects.equals(name, userData.name)) return false;
-    return Objects.equals(lname, userData.lname);
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    result = 31 * result + (lname != null ? lname.hashCode() : 0);
-    return result;
-  }
-
 
 
   @Override
