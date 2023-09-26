@@ -13,7 +13,8 @@ public class NewUserAddTest extends TestBase {
   public void testNewUserAdd() throws Exception {
     app.user().HomePage();
     List<UserData> before = app.user().list();
-    UserData user = new UserData("Test1", "Test2", "Testt", "Tesst", "some@mail.com", null);
+    UserData user = new UserData()
+            .withName("Test1").withMname("Test2").withLname("Testt").withComname("Tesst").withMail("some@mail.com").withGroup(null);
     app.user().create(user);
     app.goTo().HomePage();
     List<UserData> after = app.user().list();
