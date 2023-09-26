@@ -69,7 +69,8 @@ public class UserHelper extends NavigationHelper {
     for (WebElement element : elements) {
       String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
       String name = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
-      UserData user = new UserData( name,null, lastName,null,null,null) ;
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      UserData user = new UserData( id, name, null,lastName,null,null, null) ;
       users.add(user);
     }
     return users;
