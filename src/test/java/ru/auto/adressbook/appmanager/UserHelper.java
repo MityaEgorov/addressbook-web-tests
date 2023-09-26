@@ -48,10 +48,23 @@ public class UserHelper extends NavigationHelper {
   }
 
 
-  public void createNewUser(UserData user) {
+  public void create(UserData user) {
     gotoCreateUser();
     fillUserForm(user);
     submitNewUser();
+  }
+
+  public void modify(UserData user) {
+    buttonEditUser();
+    fillUserForm(user);
+    clickUpdateUser();
+    HomePage();
+
+  }
+
+  public void delete() {
+    buttonEditUser();
+    buttonDeleteUser();
   }
 
   public boolean noneUser() {
@@ -63,7 +76,7 @@ public class UserHelper extends NavigationHelper {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<UserData> getUserList() {
+  public List<UserData> list() {
     List<UserData> users = new ArrayList<UserData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
     for (WebElement element : elements) {

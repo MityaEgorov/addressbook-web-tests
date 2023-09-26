@@ -11,14 +11,14 @@ public class NewUserAddTest extends TestBase {
 
   @Test
   public void testNewUserAdd() throws Exception {
-    app.getUserHelper().gotoHomePage();
-    List<UserData> before = app.getUserHelper().getUserList();
+    app.user().HomePage();
+    List<UserData> before = app.user().list();
     UserData user = new UserData("Test1", "Test2", "Testt", "Tesst", "some@mail.com", null);
-    app.getUserHelper().createNewUser(user);
-    app.getNavigationHelper().gotoHomePage();
-    List<UserData> after = app.getUserHelper().getUserList();
+    app.user().create(user);
+    app.goTo().HomePage();
+    List<UserData> after = app.user().list();
     Assert.assertEquals(after.size(), before.size() + 1 );
-    
+
     before.add(user);
     Comparator<? super UserData> byId = (u1, u2) -> Integer.compare(u1.getId(), u2.getId());
     before.sort(byId);
