@@ -56,7 +56,7 @@ public class UserHelper extends NavigationHelper {
 
   public boolean noneUser() {
     return !isElementPresent(By.name("selected[]"));
-            //|| wd.findElement(By.id("search_count")).getText().equals("0");
+    //|| wd.findElement(By.id("search_count")).getText().equals("0");
   }
 
   public int getUserCount() {
@@ -65,10 +65,11 @@ public class UserHelper extends NavigationHelper {
 
   public List<UserData> getUserList() {
     List<UserData> users = new ArrayList<UserData>();
-    List<WebElement> elements = wd.findElements(By.name("selected[]"));
+    List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
     for (WebElement element : elements) {
-      String name = element.getText();
-      UserData user = new UserData("Test1", "Test2", "Testt", "Tesst", "some@mail.com", "Test") ;
+      String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
+      String name = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
+      UserData user = new UserData( name,null, lastName,null,null,null) ;
       users.add(user);
     }
     return users;
