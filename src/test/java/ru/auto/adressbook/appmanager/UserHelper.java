@@ -69,6 +69,12 @@ public class UserHelper extends NavigationHelper {
     buttonDeleteUser();
   }
 
+  public void delete(UserData user) {
+    buttonEditUser();
+    buttonDeleteUser();
+
+  }
+
   public boolean noneUser() {
     return !isElementPresent(By.name("selected[]"));
     //|| wd.findElement(By.id("search_count")).getText().equals("0");
@@ -101,4 +107,6 @@ public class UserHelper extends NavigationHelper {
     }
     return users;
   }
+
+
 }

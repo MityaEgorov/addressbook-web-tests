@@ -5,8 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.auto.adressbook.modal.UserData;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class UserDeletionTest extends TestBase {
   @BeforeMethod
@@ -19,17 +18,14 @@ public class UserDeletionTest extends TestBase {
   }
   @Test
   public void testUserDeletion() {
-    List<UserData> before = app.user().list();
+    Set<UserData> before = app.user().all();
+    UserData deletedUser = before.iterator().next();
     int index = before.size() - 1;
-    app.user().delete();
-    List<UserData> after = app.user().list();
+    app.user().delete(deletedUser);
+    Set<UserData> after = app.user().all();
     Assert.assertEquals(after.size(), index);
 
-    before.remove(index);
-
-    Comparator<? super UserData> byId = (u1, u2) -> Integer.compare(u1.getId(), u2.getId());
-    before.sort(byId);
-    after.sort(byId);
+    before.remove(deletedUser);
     Assert.assertEquals(before,after);
   }
 
