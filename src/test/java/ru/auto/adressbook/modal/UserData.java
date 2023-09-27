@@ -80,7 +80,6 @@ public class UserData {
     this.id = id;
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -88,17 +87,18 @@ public class UserData {
 
     UserData userData = (UserData) o;
 
+    if (id != userData.id) return false;
     if (!Objects.equals(name, userData.name)) return false;
     return Objects.equals(lname, userData.lname);
   }
 
   @Override
   public int hashCode() {
-    int result = name != null ? name.hashCode() : 0;
+    int result = id;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
     result = 31 * result + (lname != null ? lname.hashCode() : 0);
     return result;
   }
-
 
   @Override
   public String toString() {

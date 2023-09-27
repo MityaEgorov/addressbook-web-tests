@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import ru.auto.adressbook.modal.UserData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UserHelper extends NavigationHelper {
   public UserHelper(WebDriver wd) {
@@ -78,6 +80,18 @@ public class UserHelper extends NavigationHelper {
 
   public List<UserData> list() {
     List<UserData> users = new ArrayList<UserData>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
+    for (WebElement element : elements) {
+      String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
+      String name = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      users.add(new UserData().withId(id).withName(name).withLname(lastName));
+    }
+    return users;
+  }
+
+  public Set<UserData> all() {
+    Set<UserData> users = new HashSet<UserData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
     for (WebElement element : elements) {
       String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
