@@ -22,14 +22,13 @@ public class UserModificationTest extends TestBase {
   @Test
   public void testUserModification(){
     List<UserData> before = app.user().list();
-    int index = before.size() -1;
+    UserData modifiedUser = before.iterator().next();
     UserData user = new UserData()
-            .withId(before.get(index).getId()).withName("Test1").withMname("Test2").withLname("Testt").withComname("Tesst").withMail("some@mail.com").withGroup("test");
+            .withId(modifiedUser.getId()).withName("1234").withMname("1234").withLname("Qwe12333rtuy").withComname("Qwer33232tuy").withMail("some@mail.com").withGroup("test");
     app.user().modify(user);
     List<UserData> after = app.user().list();
-    //Assert.assertEquals(after, before.size() -1);
 
-    before.remove(index);
+    before.remove(user);
     before.add(user);
 
     Comparator<? super UserData> byId = (u1, u2) -> Integer.compare(u1.getId(), u2.getId());
